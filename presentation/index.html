@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAGA-3D Presentation</title>
+  <style>
+    :root {
+      --ink: #102027;
+      --muted: #60727b;
+      --paper: #f7f9f8;
+      --panel: #ffffff;
+      --line: #d8e1e2;
+      --teal: #007f7a;
+      --cyan: #00a6c8;
+      --coral: #d05b45;
+      --gold: #c58a1d;
+      --navy: #18364a;
+      --green: #2f8b57;
+      --shadow: 0 18px 50px rgba(24, 54, 74, .16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(0, 166, 200, .12), transparent 28%),
+        linear-gradient(135deg, #edf4f2 0%, #f8faf9 46%, #eef2f3 100%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2.2vh 2.4vw;
+    }
+
+    .slide {
+      display: none;
+      position: relative;
+      width: min(96vw, 177.78vh);
+      aspect-ratio: 16 / 9;
+      padding: 3.8% 4.3%;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid rgba(16, 32, 39, .08);
+      box-shadow: var(--shadow);
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: .72%;
+      background: linear-gradient(90deg, var(--teal), var(--cyan) 42%, var(--coral));
+    }
+
+    .kicker {
+      margin: 0 0 .9rem;
+      color: var(--teal);
+      font-size: clamp(.72rem, 1vw, 1rem);
+      font-weight: 780;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin-bottom: 1.2rem;
+      color: var(--navy);
+      font-size: clamp(3.2rem, 6.2vw, 7.2rem);
+      line-height: .95;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      max-width: 18ch;
+      margin-bottom: 1.15rem;
+      color: var(--navy);
+      font-size: clamp(2.25rem, 4vw, 4.6rem);
+      line-height: 1.02;
+      font-weight: 820;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: .75rem;
+      color: var(--navy);
+      font-size: clamp(1.05rem, 1.5vw, 1.55rem);
+      line-height: 1.15;
+      font-weight: 780;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: clamp(.92rem, 1.22vw, 1.32rem);
+      line-height: 1.42;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.25em;
+    }
+
+    li + li {
+      margin-top: .55rem;
+    }
+
+    .lead {
+      max-width: 36ch;
+      color: #36515b;
+      font-size: clamp(1.18rem, 1.75vw, 2rem);
+      line-height: 1.32;
+    }
+
+    .title-slide {
+      padding-top: 5.2%;
+      background:
+        linear-gradient(90deg, rgba(247, 249, 248, .92) 0%, rgba(247, 249, 248, .68) 48%, rgba(247, 249, 248, .32) 100%),
+        url("assets/extracted-000.png") center / cover no-repeat;
+    }
+
+    .title-meta {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem;
+      align-items: end;
+      position: absolute;
+      left: 4.3%;
+      right: 4.3%;
+      bottom: 5%;
+      color: #3c535b;
+      font-size: clamp(.82rem, 1.05vw, 1.08rem);
+    }
+
+    .meta-card {
+      width: fit-content;
+      max-width: 100%;
+      padding: .55rem .8rem;
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid rgba(16, 32, 39, .1);
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.6rem;
+      height: calc(100% - 1rem);
+      align-items: center;
+    }
+
+    .cols-2 {
+      grid-template-columns: .92fr 1.08fr;
+    }
+
+    .cols-2-even {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.15rem;
+      box-shadow: 0 10px 24px rgba(24, 54, 74, .08);
+    }
+
+    .compact p,
+    .compact li {
+      font-size: clamp(.82rem, 1.05vw, 1.08rem);
+    }
+
+    .visual {
+      width: 100%;
+      max-height: 64vh;
+      object-fit: contain;
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .visual.clean {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .image-frame {
+      position: relative;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: .55rem;
+    }
+
+    .caption {
+      margin: .55rem 0 0;
+      color: #52666f;
+      font-size: clamp(.72rem, .88vw, .96rem);
+      line-height: 1.28;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.2rem;
+    }
+
+    .tag {
+      padding: .42rem .62rem;
+      color: #173840;
+      background: #e5f4f3;
+      border: 1px solid #bddcda;
+      border-radius: 999px;
+      font-size: clamp(.76rem, .86vw, .94rem);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .8rem;
+      margin-top: 1.1rem;
+    }
+
+    .metric {
+      padding: .95rem;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--navy);
+      font-size: clamp(1.65rem, 2.5vw, 3rem);
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: clamp(.72rem, .9vw, .95rem);
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .7rem;
+      align-items: stretch;
+    }
+
+    .step {
+      position: relative;
+      min-height: 10.2rem;
+      padding: .9rem .8rem;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -.5rem;
+      width: .75rem;
+      height: .75rem;
+      border-top: 3px solid var(--teal);
+      border-right: 3px solid var(--teal);
+      transform: rotate(45deg) translateY(-50%);
+      background: var(--paper);
+    }
+
+    .step:last-child::after {
+      display: none;
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: .55rem;
+      color: var(--navy);
+      font-size: clamp(.9rem, 1.05vw, 1.12rem);
+    }
+
+    .step p {
+      margin: 0;
+      font-size: clamp(.75rem, .9vw, .98rem);
+      line-height: 1.32;
+    }
+
+    .equation {
+      margin: .8rem 0;
+      padding: .85rem 1rem;
+      color: var(--navy);
+      background: #eef6f5;
+      border-left: .28rem solid var(--teal);
+      border-radius: 6px;
+      font-family: "Times New Roman", Times, serif;
+      font-size: clamp(1rem, 1.45vw, 1.58rem);
+      line-height: 1.35;
+    }
+
+    .chart {
+      display: grid;
+      gap: .7rem;
+      padding: 1rem;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 8.7rem 1fr 4.4rem;
+      gap: .7rem;
+      align-items: center;
+      font-size: clamp(.75rem, .94vw, 1rem);
+      color: #405761;
+    }
+
+    .track {
+      height: 1.15rem;
+      background: #e6ecec;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--cyan));
+      border-radius: inherit;
+    }
+
+    .bar.baseline {
+      background: #809098;
+    }
+
+    .bar.naive {
+      background: linear-gradient(90deg, var(--gold), #e0b64c);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: clamp(.76rem, .98vw, 1.02rem);
+    }
+
+    th,
+    td {
+      padding: .68rem .78rem;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      color: var(--navy);
+      background: #eaf3f2;
+      font-weight: 800;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .ours {
+      color: var(--teal);
+      font-weight: 840;
+    }
+
+    .callout {
+      padding: 1rem 1.15rem;
+      color: #213c44;
+      background: #fff7ea;
+      border: 1px solid #ead4a6;
+      border-radius: 8px;
+      font-size: clamp(.88rem, 1.05vw, 1.1rem);
+      line-height: 1.35;
+    }
+
+    .footer {
+      position: absolute;
+      left: 4.3%;
+      right: 4.3%;
+      bottom: 2.3%;
+      display: flex;
+      justify-content: space-between;
+      color: #8a9a9f;
+      font-size: clamp(.62rem, .75vw, .82rem);
+    }
+
+    .progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      width: 100%;
+      background: rgba(16, 32, 39, .12);
+      z-index: 20;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--teal), var(--coral));
+    }
+
+    .controls {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 30;
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+      padding: .42rem;
+      background: rgba(255, 255, 255, .74);
+      border: 1px solid rgba(16, 32, 39, .12);
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    button {
+      min-width: 2.25rem;
+      min-height: 2.25rem;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--navy);
+      background: white;
+      font-weight: 820;
+      cursor: pointer;
+    }
+
+    .count {
+      padding: 0 .45rem;
+      color: #50636b;
+      font-size: .85rem;
+      white-space: nowrap;
+    }
+
+    .notes {
+      display: none;
+      position: absolute;
+      left: 4.3%;
+      right: 4.3%;
+      bottom: 6%;
+      padding: .9rem 1rem;
+      color: #263d45;
+      background: rgba(255, 255, 255, .93);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(24, 54, 74, .16);
+      font-size: clamp(.75rem, .92vw, .98rem);
+      line-height: 1.38;
+    }
+
+    .show-notes .active .notes {
+      display: block;
+    }
+
+    .dense-title h2 {
+      max-width: 22ch;
+    }
+
+    @media print {
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        display: block;
+        width: auto;
+        height: auto;
+        padding: 0;
+      }
+
+      .slide,
+      .slide.active {
+        display: block;
+        width: 100vw;
+        height: 56.25vw;
+        box-shadow: none;
+        break-after: page;
+        page-break-after: always;
+      }
+
+      .controls,
+      .progress,
+      .notes {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide title-slide active">
+      <p class="kicker">Conference Talk | 15 minutes</p>
+      <h1>SAGA-3D</h1>
+      <p class="lead">Semantic-Aligned Geometric Augmentation for Maritime 3D Detection</p>
+      <div class="tag-row">
+        <span class="tag">USV Perception</span>
+        <span class="tag">Camera-LiDAR Fusion</span>
+        <span class="tag">Semantic Alignment</span>
+        <span class="tag">3D Object Detection</span>
+      </div>
+      <div class="title-meta">
+        <div class="meta-card">Tengfei Xie, Zixuan Tian, Anqing Wang, Huarong Zheng</div>
+        <div class="meta-card">Zhejiang University & Dalian Maritime University</div>
+      </div>
+      <aside class="notes">Opening: introduce the problem as robust 3D perception for unmanned surface vehicles. The talk will focus on why maritime camera-LiDAR fusion is fragile and how semantic alignment improves detection.</aside>
+      <div class="footer"><span>SAGA-3D</span><span>1 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Motivation</p>
+          <h2>Reliable 3D perception is a safety requirement at sea</h2>
+          <p class="lead">USVs must localize vessels, buoys, and obstacles in 3D to support collision avoidance and autonomous decision making.</p>
+        </div>
+        <div>
+          <div class="panel">
+            <h3>Why fusion is needed</h3>
+            <ul>
+              <li>Cameras provide dense semantic information about object appearance.</li>
+              <li>LiDAR provides accurate geometry and spatial measurements.</li>
+              <li>Fusing both modalities should improve robustness in complex maritime scenes.</li>
+            </ul>
+          </div>
+          <div class="metric-strip">
+            <div class="metric"><strong>3D</strong><span>spatial localization</span></div>
+            <div class="metric"><strong>BEV</strong><span>navigation-level layout</span></div>
+            <div class="metric"><strong>L+C</strong><span>LiDAR plus camera fusion</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">Set up the application context. Emphasize that maritime autonomy needs more than image recognition; it needs stable spatial perception for planning and collision avoidance.</aside>
+      <div class="footer"><span>Motivation</span><span>2 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Maritime Challenge</p>
+          <h2>Good fusion depends on alignment, but alignment is unstable on water</h2>
+          <ul>
+            <li>Waves and currents continuously perturb the sensor rig.</li>
+            <li>Calibration drift, vibration, and platform motion create projection errors.</li>
+            <li>Lighting variation, reflections, and occlusion make visual sensing less reliable.</li>
+          </ul>
+        </div>
+        <div class="image-frame">
+          <img class="visual clean" src="assets/extracted-000.png" alt="Sensor misalignment and natural alignment examples">
+          <p class="caption">Fig. 1 from the paper: motion-induced effects can move projected LiDAR points away from the visual object structure.</p>
+        </div>
+      </div>
+      <aside class="notes">Use the figure as the intuitive anchor. The left image shows a clear offset between the LiDAR projection and the boat. This is not a small visualization issue; it directly corrupts the fused feature representation.</aside>
+      <div class="footer"><span>Challenge</span><span>3 / 13</span></div>
+    </section>
+
+    <section class="slide dense-title">
+      <p class="kicker">Problem Formulation</p>
+      <h2>From geometric calibration to semantic consistency</h2>
+      <div class="grid cols-2-even">
+        <div class="panel compact">
+          <h3>Inputs</h3>
+          <ul>
+            <li>RGB image: <b>I</b></li>
+            <li>LiDAR point cloud: <b>P = {p<sub>i</sub>}<sup>N</sup><sub>i=1</sub></b></li>
+            <li>Initial camera-LiDAR transform: <b>T<sub>0</sub></b></li>
+            <li>Camera intrinsics: <b>K</b></li>
+          </ul>
+        </div>
+        <div class="panel compact">
+          <h3>Projection and features</h3>
+          <div class="equation">u<sub>i</sub> = &Pi;(K T p<sub>i</sub>)</div>
+          <div class="equation">F<sub>I</sub> = &phi;(I), &nbsp; f<sub>i</sub> = F<sub>I</sub>(u<sub>i</sub>)</div>
+          <p>The objective is to refine <b>T</b> so projected LiDAR observations agree with image semantics.</p>
+        </div>
+      </div>
+      <aside class="notes">Explain the reformulation. Classical calibration relies heavily on geometric correspondences, while this work asks whether projected LiDAR points land on semantically consistent image regions.</aside>
+      <div class="footer"><span>Formulation</span><span>4 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Core Idea</p>
+      <h2>Use semantic priors to guide geometric augmentation</h2>
+      <div class="pipeline">
+        <div class="step"><b>1. Extract</b><p>Use a frozen vision foundation model to obtain dense semantic image features.</p></div>
+        <div class="step"><b>2. Project</b><p>Map LiDAR points to the image plane with the current transform estimate.</p></div>
+        <div class="step"><b>3. Compare</b><p>Measure semantic similarity at projected image locations.</p></div>
+        <div class="step"><b>4. Weight</b><p>Suppress unreliable correspondences with confidence-aware weights.</p></div>
+        <div class="step"><b>5. Refine</b><p>Update the transform and train a more robust 3D detector.</p></div>
+      </div>
+      <div class="callout" style="margin-top:1.25rem;">The key claim: semantic information helps only when it is aligned. Naive fusion can add noise; adaptive semantic alignment turns visual cues into useful geometric supervision.</div>
+      <aside class="notes">This is the main message of the method section. The semantic model is not used merely as another feature extractor; it provides a consistency signal for cross-modal alignment.</aside>
+      <div class="footer"><span>Core Idea</span><span>5 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Framework</p>
+          <h2>SAGA-3D aligns before detection</h2>
+          <ul>
+            <li>Feature extraction converts the image into dense semantic embeddings.</li>
+            <li>Semantic-guided alignment iteratively optimizes the transform.</li>
+            <li>The refined representation is passed to the 3D detection backbone and head.</li>
+          </ul>
+        </div>
+        <div class="image-frame">
+          <img class="visual clean" src="assets/extracted-002.png" alt="Overview of the SAGA-3D framework">
+          <p class="caption">Pipeline: VFM semantic features, LiDAR initialization, semantic-guided alignment, and 3D detection.</p>
+        </div>
+      </div>
+      <aside class="notes">Walk from left to right. Stress that the alignment module sits between the raw modalities and the detector, so it directly improves the quality of fusion rather than compensating after detection.</aside>
+      <div class="footer"><span>Framework</span><span>6 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2-even">
+        <div>
+          <p class="kicker">Semantic Features</p>
+          <h2>Dense VFM features provide robust visual structure</h2>
+          <p class="lead">SAGA-3D uses DINOv2-style pretrained visual features as high-level semantic priors.</p>
+          <div class="tag-row">
+            <span class="tag">illumination variation</span>
+            <span class="tag">viewpoint change</span>
+            <span class="tag">texture ambiguity</span>
+            <span class="tag">partial occlusion</span>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Why this matters in maritime scenes</h3>
+          <ul>
+            <li>Water reflections and sky glare weaken low-level appearance cues.</li>
+            <li>Objects such as sailboats and buoys may be sparse in LiDAR.</li>
+            <li>High-level semantic features create a stronger target for alignment than raw pixels.</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">Do not over-explain DINOv2. The point for the audience is that the features are pretrained, dense, and semantically meaningful, which makes them more stable than handcrafted or low-level descriptors.</aside>
+      <div class="footer"><span>Semantic Prior</span><span>7 / 13</span></div>
+    </section>
+
+    <section class="slide dense-title">
+      <p class="kicker">Optimization</p>
+      <h2>Confidence-aware alignment reduces noisy correspondences</h2>
+      <div class="grid cols-2-even">
+        <div class="panel">
+          <h3>Semantic similarity</h3>
+          <div class="equation">S<sub>i</sub> = (f<sup>LiDAR</sup><sub>i</sub> &middot; f<sup>Image</sup><sub>i</sub>) / (||f<sup>LiDAR</sup><sub>i</sub>|| ||f<sup>Image</sup><sub>i</sub>||)</div>
+          <p>Cosine similarity measures whether projected LiDAR points agree with image semantics.</p>
+        </div>
+        <div class="panel">
+          <h3>Weighted objective</h3>
+          <div class="equation">L(T) = - &Sigma;<sup>N</sup><sub>i=1</sub> w<sub>i</sub> S<sub>i</sub></div>
+          <p>Reliable matches dominate the update; low-confidence or negative matches are suppressed.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:1rem;">Operationally, this makes the model less sensitive to sparse returns, motion blur, occlusion, and partial modality degradation.</div>
+      <aside class="notes">Keep this slide mathematical but concise. The audience only needs to remember two operations: compare semantic embeddings and weight the comparison by confidence.</aside>
+      <div class="footer"><span>Optimization</span><span>8 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Experimental Setup</p>
+      <h2>Evaluation on SeePerSea maritime perception benchmark</h2>
+      <div class="grid cols-3 compact">
+        <div class="panel">
+          <h3>Dataset</h3>
+          <ul>
+            <li>SeePerSea multimodal maritime perception benchmark.</li>
+            <li>Camera-LiDAR scenarios with in-water objects.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Baselines</h3>
+          <ul>
+            <li><b>TED-S:</b> LiDAR-only detector.</li>
+            <li><b>TED-S + NSA:</b> naive semantic alignment with initial calibration.</li>
+            <li><b>SAGA-3D:</b> adaptive semantic alignment.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Metrics</h3>
+          <ul>
+            <li><b>BEV mAP:</b> planar localization accuracy.</li>
+            <li><b>3D mAP:</b> full volumetric detection quality.</li>
+            <li>IoU thresholds: 0.5 and 0.7.</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="notes">Position the experiment as a controlled comparison. TED-S isolates LiDAR-only performance, while NSA tests whether visual semantics alone are enough without adaptive alignment.</aside>
+      <div class="footer"><span>Experiments</span><span>9 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Quantitative Results</p>
+          <h2>SAGA-3D improves both BEV and full 3D detection</h2>
+          <div class="chart">
+            <h3>mAP@0.5 comparison</h3>
+            <div class="bar-row"><span>TED-S</span><div class="track"><div class="bar baseline" style="width:65.16%"></div></div><b>65.16</b></div>
+            <div class="bar-row"><span>TED-S + NSA</span><div class="track"><div class="bar naive" style="width:64.54%"></div></div><b>64.54</b></div>
+            <div class="bar-row"><span>SAGA-3D BEV</span><div class="track"><div class="bar" style="width:77.28%"></div></div><b>77.28</b></div>
+            <div class="bar-row"><span>TED-S 3D</span><div class="track"><div class="bar baseline" style="width:51.84%"></div></div><b>51.84</b></div>
+            <div class="bar-row"><span>TED-S + NSA 3D</span><div class="track"><div class="bar naive" style="width:55.88%"></div></div><b>55.88</b></div>
+            <div class="bar-row"><span>SAGA-3D 3D</span><div class="track"><div class="bar" style="width:68.06%"></div></div><b>68.06</b></div>
+          </div>
+        </div>
+        <div>
+          <table>
+            <thead>
+              <tr><th>Model</th><th>Modality</th><th>BEV@0.5</th><th>3D@0.5</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>TED-S</td><td>L</td><td>65.16</td><td>51.84</td></tr>
+              <tr><td>TED-S + NSA</td><td>L+C</td><td>64.54</td><td>55.88</td></tr>
+              <tr><td class="ours">SAGA-3D</td><td>L+C</td><td class="ours">77.28</td><td class="ours">68.06</td></tr>
+            </tbody>
+          </table>
+          <div class="metric-strip">
+            <div class="metric"><strong>+12.12</strong><span>BEV mAP@0.5 over TED-S</span></div>
+            <div class="metric"><strong>+16.22</strong><span>3D mAP@0.5 over TED-S</span></div>
+            <div class="metric"><strong>74.81</strong><span>BEV mAP@0.7</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">The result to highlight is that NSA slightly hurts BEV mAP, meaning raw semantic fusion can introduce inconsistency. SAGA-3D converts the semantic signal into a clear gain by explicitly aligning it.</aside>
+      <div class="footer"><span>Results</span><span>10 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Qualitative Alignment</p>
+          <h2>Projected points move toward visual object structure</h2>
+          <ul>
+            <li>Baseline projections are visibly offset from boats and sparse objects.</li>
+            <li>SAGA-3D produces tighter geometric-semantic correspondence.</li>
+            <li>The effect is most important for distant, sparse, or partially occluded targets.</li>
+          </ul>
+        </div>
+        <div class="image-frame">
+          <img class="visual clean" src="assets/extracted-004.png" alt="LiDAR image alignment comparison">
+          <p class="caption">Fig. 3: left column baseline alignment; right column SAGA-3D alignment.</p>
+        </div>
+      </div>
+      <aside class="notes">Use one row of the figure as an example. Point out that the boat silhouette and projected LiDAR structure become more consistent, which explains why the detection backbone receives cleaner fused evidence.</aside>
+      <div class="footer"><span>Qualitative Study</span><span>11 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <div class="grid cols-2">
+        <div>
+          <p class="kicker">Detection Visualization</p>
+          <h2>Better alignment leads to more consistent 3D boxes</h2>
+          <ul>
+            <li>Baseline results show inaccurate or incomplete bounding boxes.</li>
+            <li>SAGA-3D improves spatial consistency in the detected 3D layout.</li>
+            <li>The gain is visible in both object localization and box fitting.</li>
+          </ul>
+        </div>
+        <div class="image-frame">
+          <img class="visual clean" src="assets/extracted-006.png" alt="3D detection result comparison">
+          <p class="caption">Fig. 4: baseline detection at top; SAGA-3D result at bottom.</p>
+        </div>
+      </div>
+      <aside class="notes">Connect the qualitative result back to the metrics. The goal is not just prettier projection, but more reliable 3D detection under maritime sensing noise.</aside>
+      <div class="footer"><span>Detection Visualization</span><span>12 / 13</span></div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">Conclusion</p>
+      <h2>Semantic alignment is a practical route to robust maritime fusion</h2>
+      <div class="grid cols-3 compact">
+        <div class="panel">
+          <h3>Problem</h3>
+          <p>Camera-LiDAR fusion on USVs is degraded by motion-induced misalignment and harsh visual conditions.</p>
+        </div>
+        <div class="panel">
+          <h3>Method</h3>
+          <p>SAGA-3D refines cross-modal geometry by maximizing confidence-weighted semantic consistency.</p>
+        </div>
+        <div class="panel">
+          <h3>Result</h3>
+          <p>The method improves BEV and 3D mAP on SeePerSea, outperforming LiDAR-only and naive fusion baselines.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:1.2rem;">Future direction: improve robustness under extreme sea states and develop lighter alignment strategies for real-time onboard deployment.</div>
+      <aside class="notes">Close with three takeaways: the maritime setting makes alignment unusually important, semantic priors provide a useful alignment signal, and confidence-aware optimization makes the signal robust enough for detection.</aside>
+      <div class="footer"><span>Conclusion</span><span>13 / 13</span></div>
+    </section>
+  </main>
+
+  <div class="controls" aria-label="Slide controls">
+    <button id="prev" title="Previous slide" aria-label="Previous slide">&#8592;</button>
+    <span class="count" id="count">1 / 13</span>
+    <button id="next" title="Next slide" aria-label="Next slide">&#8594;</button>
+    <button id="notes" title="Toggle speaker notes" aria-label="Toggle speaker notes">N</button>
+  </div>
+  <div class="progress"><span id="progress"></span></div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const count = document.getElementById("count");
+    const progress = document.getElementById("progress");
+    let current = 0;
+
+    function show(index) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      count.textContent = `${current + 1} / ${slides.length}`;
+      progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+      history.replaceState(null, "", `#${current + 1}`);
+    }
+
+    document.getElementById("prev").addEventListener("click", () => show(current - 1));
+    document.getElementById("next").addEventListener("click", () => show(current + 1));
+    document.getElementById("notes").addEventListener("click", () => document.body.classList.toggle("show-notes"));
+
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        show(current + 1);
+      }
+      if (["ArrowLeft", "PageUp", "Backspace"].includes(event.key)) {
+        event.preventDefault();
+        show(current - 1);
+      }
+      if (event.key.toLowerCase() === "n") {
+        document.body.classList.toggle("show-notes");
+      }
+      if (event.key === "Home") show(0);
+      if (event.key === "End") show(slides.length - 1);
+    });
+
+    const initial = Number(location.hash.replace("#", ""));
+    show(Number.isFinite(initial) && initial > 0 ? initial - 1 : 0);
+  </script>
+</body>
+</html>

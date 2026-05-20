@@ -1,0 +1,168 @@
+/* @theme zju */
+
+@import 'gaia';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Source+Code+Pro&display=swap');
+
+:root {
+  --color-background: #fff;
+  --color-foreground: #333;
+  --color-highlight: #1b4285;
+}
+
+
+/**
+ * General slide styles
+ * -------------------------------------------------------------------------- */
+
+section {
+  background-image: none;
+  font-family: 'Noto Serif SC', serif;
+  padding: 90px 40px 40px 40px; /* Consolidate padding properties */
+}
+
+/* Custom pagination style: current / total */
+/* https://github.com/marp-team/marpit/issues/271 */
+section::after {
+  font-weight: 700;
+  content: attr(data-marpit-pagination) '/' attr(data-marpit-pagination-total);
+}
+
+/* Style for nested lists */
+ul ul {
+  font-size: 0.9em;
+}
+
+
+/**
+ * Header and footer elements
+ * -------------------------------------------------------------------------- */
+
+header {
+  background-color: var(--color-highlight);
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700; /* This line is restored to make header text bold. */
+}
+
+/* ZJU logo in the header */
+/* Suggestion: Host the logo image locally for better reliability. */
+header::after {
+  content: '';
+  position: absolute;
+  top: -15%;
+  right: 10px;
+  width: 200px;
+  height: 200px;
+  background-image: url('https://raw.githubusercontent.com/CouesF/OpenImageBed/master/uPic/2024-01-10-20_32-浙江大学logo-白.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Using blockquote as a footer note */
+blockquote {
+  max-width: 90%;
+  border-top: 0.1em dashed #555;
+  font-size: 60%;
+  position: absolute;
+  bottom: 20px;
+}
+
+/* Override default quote characters from the base theme */
+blockquote::before,
+blockquote::after {
+  content: "";
+}
+
+
+/**
+ * Content styling
+ * -------------------------------------------------------------------------- */
+
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+
+/**
+ * Image alignment helpers
+ * Usage: ![center](image.png), ![right](image.png)
+ * -------------------------------------------------------------------------- */
+
+img[alt~="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img[alt~="right"] {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+
+/**
+ * Lead slide style (`class: lead`)
+ * -------------------------------------------------------------------------- */
+
+section.lead h1,
+section.lead h2,
+section.lead h3,
+section.lead h4,
+section.lead h5 {
+  color: var(--color-highlight);
+  text-align: center;
+}
+
+section.lead h1 strong,
+section.lead h2 strong,
+section.lead h3 strong,
+section.lead h4 strong,
+section.lead h5 strong {
+  -webkit-text-stroke: 1px var(--color-highlight);
+  /* The color property is inherited, so no need to set it again */
+}
+
+section.lead p {
+  text-align: center;
+}
+
+
+/**
+ * Multi-column layout support
+ * Usage: <div class="columns"> ... </div>
+ * -------------------------------------------------------------------------- */
+
+/* Base style for all column containers */
+[class^="columns"] {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Specific column counts and ratios */
+.columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.columns-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.columns-73 { grid-template-columns: minmax(0, 7fr) minmax(0, 3fr); }
+.columns-37 { grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); }
+.columns-21 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.columns-12 { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+
+/* Vertical alignment helper */
+.columns-center,
+.columns.center {
+  align-items: center;
+}
+
+/* Responsive images within columns */
+[class^="columns"] img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* List styling within columns */
+[class^="columns"] ul,
+[class^="columns"] ol {
+  margin: 0;
+  padding-left: 1.2rem;
+}
