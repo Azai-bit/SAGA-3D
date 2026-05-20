@@ -2,10 +2,6 @@
 
 ## Semantic-Aligned Geometric Augmentation for Maritime 3D Detection
 
-Tengfei Xie
-
-Zhejiang University
-
 > Focus: <span class="emphasis"><strong>robust camera-LiDAR 3D perception for USVs</strong></span>
 
 ---
