@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1672" height="941" viewBox="0 0 1672 941">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6 L1,11 Z" fill="#0b438f"/>
+    </marker>
+    <linearGradient id="badge" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#0d63b6"/>
+      <stop offset="1" stop-color="#07347d"/>
+    </linearGradient>
+    <style>
+      .panel{fill:#fff;stroke:#073c8c;stroke-width:2.6}
+      .blue{fill:#07347d}
+      .title{font:700 36px Georgia,serif;fill:#07347d}
+      .heading{font:700 23px Georgia,serif;fill:#052f7b}
+      .body{font:600 21px Georgia,serif;fill:#052f7b}
+      .small{font:600 18px Georgia,serif;fill:#052f7b}
+      .math{font:italic 22px Georgia,serif;fill:#052f7b}
+      .badgeText{font:700 35px Georgia,serif;fill:#fff}
+      .arrow{stroke:#0b438f;stroke-width:4;fill:none;marker-end:url(#arrow)}
+      .thinArrow{stroke:#0b438f;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#0b438f;stroke-width:1.8;fill:none;stroke-dasharray:7 5}
+      .score{fill:#fbfbff;stroke:#073c8c;stroke-width:1.8}
+      .vecBox{fill:#e9f6ff;stroke:#1491ff;stroke-width:1.7}
+      .vecDotL{fill:#7d89db;stroke:#052f7b;stroke-width:1.5}
+      .vecDotR{fill:#8ed0ff;stroke:#052f7b;stroke-width:1.5}
+      .dotA{fill:#006edc}
+      .dotB{fill:#42c5ff}
+      .dotC{fill:#8354ff}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1672" height="941" fill="#fff"/>
+
+  <!-- Flow arrows between editable step groups -->
+  <path id="flow-1-2" class="arrow" d="M500 211 L529 211"/>
+  <path id="flow-2-3" class="arrow" d="M1022 211 L1051 211"/>
+  <path id="flow-3-4" class="arrow" d="M1325 439 L1325 470"/>
+  <path id="flow-4-5" class="arrow" d="M1030 674 L998 674"/>
+  <path id="flow-5-6" class="arrow" d="M537 674 L504 674"/>
+  <path id="flow-6-1" class="thinArrow" d="M34 636 L8 636 L8 342 L34 342"/>
+
+  <g id="step-1-project-points">
+    <rect class="panel" x="34" y="18" width="466" height="421" rx="14"/>
+    <circle cx="137" cy="52" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="137" y="64" text-anchor="middle">1</text>
+    <text class="title" x="182" y="65">Project points</text>
+
+    <text class="heading" x="111" y="116" text-anchor="middle">Source</text>
+    <text class="heading" x="111" y="141" text-anchor="middle">point cloud</text>
+    <text class="heading" x="431" y="116" text-anchor="middle">Target</text>
+    <text class="heading" x="431" y="141" text-anchor="middle">point cloud</text>
+    <text class="body" x="200" y="192">Project with</text>
+    <text class="math" x="328" y="192">T<tspan baseline-shift="sub" font-size="15">k</tspan></text>
+    <path class="arrow" d="M198 249 L303 249"/>
+
+    <g id="source-point-cloud" transform="translate(65 156)">
+      <path d="M20 153 C48 126 104 118 131 94 C119 125 83 154 31 174" fill="#f1f7ff" stroke="#006edc" stroke-width="2" opacity=".55"/>
+      <path d="M13 139 C47 147 88 144 126 119" fill="none" stroke="#006edc" stroke-width="3"/>
+      <path d="M23 158 C66 172 119 149 145 113" fill="none" stroke="#006edc" stroke-width="3"/>
+      <path d="M37 120 C68 102 98 104 126 91" fill="none" stroke="#006edc" stroke-width="2"/>
+      <path d="M66 101 L72 15 M101 97 L92 7 M121 91 L110 32 M39 130 L37 55" stroke="#006edc" stroke-width="2" stroke-dasharray="3 5" fill="none"/>
+      <circle class="dotA" cx="13" cy="139" r="1.7"/><circle class="dotA" cx="17" cy="151" r="1.7"/><circle class="dotA" cx="21" cy="165" r="1.7"/>
+      <circle class="dotA" cx="27" cy="126" r="1.7"/><circle class="dotA" cx="31" cy="143" r="1.7"/><circle class="dotA" cx="35" cy="176" r="1.7"/>
+      <circle class="dotA" cx="41" cy="118" r="1.7"/><circle class="dotA" cx="44" cy="138" r="1.7"/><circle class="dotA" cx="48" cy="159" r="1.7"/>
+      <circle class="dotA" cx="52" cy="106" r="1.7"/><circle class="dotA" cx="56" cy="133" r="1.7"/><circle class="dotA" cx="60" cy="168" r="1.7"/>
+      <circle class="dotA" cx="64" cy="99" r="1.7"/><circle class="dotA" cx="68" cy="126" r="1.7"/><circle class="dotA" cx="71" cy="157" r="1.7"/>
+      <circle class="dotA" cx="76" cy="107" r="1.7"/><circle class="dotA" cx="79" cy="132" r="1.7"/><circle class="dotA" cx="84" cy="164" r="1.7"/>
+      <circle class="dotA" cx="88" cy="96" r="1.7"/><circle class="dotA" cx="91" cy="123" r="1.7"/><circle class="dotA" cx="96" cy="151" r="1.7"/>
+      <circle class="dotA" cx="101" cy="91" r="1.7"/><circle class="dotA" cx="105" cy="118" r="1.7"/><circle class="dotA" cx="108" cy="142" r="1.7"/>
+      <circle class="dotA" cx="113" cy="84" r="1.7"/><circle class="dotA" cx="117" cy="107" r="1.7"/><circle class="dotA" cx="121" cy="132" r="1.7"/>
+      <circle class="dotA" cx="126" cy="79" r="1.7"/><circle class="dotA" cx="130" cy="99" r="1.7"/><circle class="dotA" cx="135" cy="119" r="1.7"/>
+      <circle class="dotA" cx="31" cy="76" r="1.6"/><circle class="dotA" cx="38" cy="58" r="1.6"/><circle class="dotA" cx="57" cy="43" r="1.6"/>
+      <circle class="dotA" cx="71" cy="20" r="1.6"/><circle class="dotA" cx="91" cy="16" r="1.6"/><circle class="dotA" cx="118" cy="32" r="1.6"/>
+      <circle class="dotA" cx="138" cy="56" r="1.6"/><circle class="dotA" cx="147" cy="76" r="1.6"/><circle class="dotA" cx="151" cy="98" r="1.6"/>
+    </g>
+
+    <g id="projected-source" transform="translate(306 191)">
+      <path d="M20 101 C39 87 67 88 83 70 C75 92 52 110 20 120" fill="#effaff" stroke="#42c5ff" stroke-width="1.6" opacity=".7"/>
+      <path d="M19 102 C43 111 70 97 88 76" stroke="#42c5ff" stroke-width="2.2" fill="none"/>
+      <path d="M36 94 L43 4 M61 91 L55 28 M78 76 L83 48" stroke="#42c5ff" stroke-width="1.7" stroke-dasharray="3 5" fill="none"/>
+      <circle class="dotB" cx="19" cy="102" r="1.4"/><circle class="dotB" cx="25" cy="111" r="1.4"/><circle class="dotB" cx="36" cy="94" r="1.4"/>
+      <circle class="dotB" cx="41" cy="105" r="1.4"/><circle class="dotB" cx="52" cy="98" r="1.4"/><circle class="dotB" cx="62" cy="88" r="1.4"/>
+      <circle class="dotB" cx="72" cy="82" r="1.4"/><circle class="dotB" cx="84" cy="75" r="1.4"/><circle class="dotB" cx="39" cy="57" r="1.4"/>
+      <circle class="dotB" cx="43" cy="19" r="1.4"/><circle class="dotB" cx="55" cy="34" r="1.4"/><circle class="dotB" cx="83" cy="48" r="1.4"/>
+    </g>
+    <text class="body" x="332" y="344" text-anchor="middle">Projected source</text>
+    <text class="math" x="334" y="377" text-anchor="middle">(T<tspan baseline-shift="sub" font-size="15">k</tspan>)</text>
+
+    <g id="target-point-cloud" transform="translate(383 156)">
+      <path d="M9 145 C53 119 90 118 111 91 C101 129 70 157 18 176" fill="#f3edff" stroke="#8354ff" stroke-width="2" opacity=".55"/>
+      <path d="M5 139 C43 147 80 144 109 120" fill="none" stroke="#8354ff" stroke-width="3"/>
+      <path d="M17 158 C59 174 96 149 119 111" fill="none" stroke="#8354ff" stroke-width="3"/>
+      <path d="M50 103 L56 4 M83 96 L78 2 M103 90 L95 29 M25 129 L27 51" stroke="#8354ff" stroke-width="2" stroke-dasharray="3 5" fill="none"/>
+      <circle class="dotC" cx="5" cy="139" r="1.6"/><circle class="dotC" cx="11" cy="153" r="1.6"/><circle class="dotC" cx="18" cy="170" r="1.6"/>
+      <circle class="dotC" cx="25" cy="129" r="1.6"/><circle class="dotC" cx="31" cy="145" r="1.6"/><circle class="dotC" cx="38" cy="163" r="1.6"/>
+      <circle class="dotC" cx="45" cy="118" r="1.6"/><circle class="dotC" cx="51" cy="138" r="1.6"/><circle class="dotC" cx="58" cy="158" r="1.6"/>
+      <circle class="dotC" cx="64" cy="105" r="1.6"/><circle class="dotC" cx="70" cy="130" r="1.6"/><circle class="dotC" cx="78" cy="151" r="1.6"/>
+      <circle class="dotC" cx="84" cy="96" r="1.6"/><circle class="dotC" cx="90" cy="120" r="1.6"/><circle class="dotC" cx="98" cy="142" r="1.6"/>
+      <circle class="dotC" cx="106" cy="87" r="1.6"/><circle class="dotC" cx="111" cy="111" r="1.6"/><circle class="dotC" cx="118" cy="132" r="1.6"/>
+      <circle class="dotC" cx="54" cy="14" r="1.5"/><circle class="dotC" cx="77" cy="13" r="1.5"/><circle class="dotC" cx="96" cy="34" r="1.5"/>
+      <circle class="dotC" cx="116" cy="57" r="1.5"/><circle class="dotC" cx="126" cy="78" r="1.5"/><circle class="dotC" cx="130" cy="101" r="1.5"/>
+    </g>
+  </g>
+
+  <g id="step-2-sample-features">
+    <rect class="panel" x="530" y="18" width="492" height="421" rx="14"/>
+    <circle cx="642" cy="52" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="642" y="64" text-anchor="middle">2</text>
+    <text class="title" x="683" y="65">Sample features</text>
+
+    <text class="heading" x="625" y="116" text-anchor="middle">Projected points</text>
+    <text class="math" x="625" y="145" text-anchor="middle">(T<tspan baseline-shift="sub" font-size="15">k</tspan>)</text>
+    <text x="895" y="116" text-anchor="middle" style="font:700 21px Georgia,serif;fill:#052f7b">Feature map (Target)</text>
+
+    <g id="sample-projected-cloud" transform="translate(585 177)">
+      <path d="M0 103 C30 89 58 86 78 70 C70 91 48 108 3 118" fill="#effaff" stroke="#42c5ff" stroke-width="1.7" opacity=".75"/>
+      <path d="M1 103 C31 111 65 96 81 75" stroke="#42c5ff" stroke-width="2.2" fill="none"/>
+      <path d="M31 93 L39 0 M55 88 L49 26 M74 75 L80 50" stroke="#42c5ff" stroke-width="1.6" stroke-dasharray="3 5" fill="none"/>
+      <circle class="dotB" cx="2" cy="104" r="1.4"/><circle class="dotB" cx="10" cy="112" r="1.4"/><circle class="dotB" cx="25" cy="102" r="1.4"/>
+      <circle class="dotB" cx="38" cy="96" r="1.4"/><circle class="dotB" cx="53" cy="90" r="1.4"/><circle class="dotB" cx="68" cy="81" r="1.4"/>
+      <circle class="dotB" cx="39" cy="10" r="1.4"/><circle class="dotB" cx="49" cy="28" r="1.4"/><circle class="dotB" cx="80" cy="50" r="1.4"/>
+      <rect x="42" y="80" width="16" height="24" fill="none" stroke="#073c8c" stroke-width="1.7"/>
+    </g>
+
+    <g id="feature-map" transform="translate(870 132)">
+      <polygon points="0,20 119,0 119,222 0,189" fill="#082b8e" stroke="#073c8c" stroke-width="2"/>
+      <g opacity=".92">
+        <polygon points="0,20 20,17 20,202 0,189" fill="#0640b8"/>
+        <polygon points="20,17 40,13 40,207 20,202" fill="#0a68d8"/>
+        <polygon points="40,13 60,10 60,211 40,207" fill="#0086c8"/>
+        <polygon points="60,10 80,7 80,216 60,211" fill="#0b5196"/>
+        <polygon points="80,7 100,3 100,220 80,216" fill="#032f8f"/>
+        <polygon points="100,3 119,0 119,222 100,220" fill="#0b5ab0"/>
+        <polygon points="0,58 119,36 119,73 0,92" fill="#009bb2" opacity=".55"/>
+        <polygon points="0,96 119,73 119,111 0,128" fill="#22ce75" opacity=".55"/>
+        <polygon points="0,134 119,111 119,148 0,165" fill="#0057c8" opacity=".65"/>
+        <polygon points="0,170 119,148 119,185 0,185" fill="#0ac989" opacity=".45"/>
+      </g>
+      <path d="M14 69 C18 42 45 56 45 34 C62 39 68 62 57 76 C42 91 23 84 14 69 Z" fill="#d7fb0f" opacity=".9"/>
+      <path d="M51 25 C63 11 89 15 83 37 C74 52 52 48 51 25 Z" fill="#f4f900" opacity=".92"/>
+      <circle cx="63" cy="32" r="8" fill="#ff1717"/>
+      <circle cx="33" cy="88" r="9" fill="#fffb00"/>
+      <circle cx="58" cy="129" r="9" fill="#fffb00"/>
+      <circle cx="59" cy="129" r="6" fill="#ff1717"/>
+      <circle cx="93" cy="135" r="8" fill="#fffb00"/>
+      <circle cx="94" cy="136" r="4" fill="#ff1717"/>
+      <path d="M43 171 C48 160 60 165 62 177 C56 188 47 186 43 171 Z" fill="#fffb00"/>
+      <path d="M79 185 C86 168 103 174 98 194 C91 207 76 200 79 185 Z" fill="#fffb00"/>
+      <circle cx="88" cy="192" r="5" fill="#ff1717"/>
+      <path d="M100 86 C105 76 114 81 113 96 C108 111 95 99 100 86 Z" fill="#b7ff0b"/>
+      <path d="M37 56 L84 48 M15 107 L112 88 M21 148 L113 130 M18 184 L106 166" stroke="#023b88" stroke-width="1.2" opacity=".7"/>
+      <path d="M20 17 L20 202 M40 13 L40 207 M60 10 L60 211 M80 7 L80 216 M100 3 L100 220" stroke="#023b88" stroke-width="1.2" opacity=".7"/>
+    </g>
+
+    <path class="dash" d="M637 260 L870 153"/>
+    <path class="dash" d="M637 268 L870 186"/>
+    <path class="dash" d="M637 276 L870 223"/>
+    <path class="dash" d="M637 284 L870 268"/>
+    <path class="dash" d="M637 292 L870 319"/>
+
+    <text class="body" x="776" y="384" text-anchor="middle">Sample semantic / geometric features</text>
+    <text class="body" x="776" y="411" text-anchor="middle">around each projected point</text>
+  </g>
+
+  <g id="step-3-compute-similarity">
+    <rect class="panel" x="1052" y="18" width="603" height="421" rx="14"/>
+    <circle cx="1196" cy="52" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="1196" y="64" text-anchor="middle">3</text>
+    <text class="title" x="1239" y="65">Compute similarity</text>
+
+    <text class="heading" x="1148" y="116" text-anchor="middle">Feature vectors</text>
+    <text class="heading" x="1350" y="116" text-anchor="middle">Similarity</text>
+    <text class="math" x="1107" y="160" text-anchor="middle">f<tspan baseline-shift="sub" font-size="15">i</tspan><tspan baseline-shift="super" font-size="15">LiDAR</tspan></text>
+    <text class="math" x="1211" y="160" text-anchor="middle">f<tspan baseline-shift="sub" font-size="15">i</tspan><tspan baseline-shift="super" font-size="15">Image</tspan></text>
+    <text class="math" x="1350" y="160" text-anchor="middle">s<tspan baseline-shift="sub" font-size="15">i</tspan></text>
+
+    <g id="lidar-vector">
+      <rect class="vecBox" x="1092" y="180" width="37" height="201" rx="7"/>
+      <circle class="vecDotL" cx="1110" cy="201" r="10"/>
+      <circle class="vecDotL" cx="1110" cy="240" r="10"/>
+      <circle class="vecDotL" cx="1110" cy="280" r="10"/>
+      <text class="body" x="1110" y="326" text-anchor="middle">...</text>
+      <circle class="vecDotL" cx="1110" cy="356" r="10"/>
+    </g>
+    <g id="image-vector">
+      <rect class="vecBox" x="1193" y="180" width="37" height="201" rx="7"/>
+      <circle class="vecDotR" cx="1211" cy="201" r="10"/>
+      <circle class="vecDotR" cx="1211" cy="240" r="10"/>
+      <circle class="vecDotR" cx="1211" cy="280" r="10"/>
+      <text class="body" x="1211" y="326" text-anchor="middle">...</text>
+      <circle class="vecDotR" cx="1211" cy="356" r="10"/>
+    </g>
+
+    <g id="similarity-scores">
+      <rect class="score" x="1308" y="180" width="83" height="34"/>
+      <text class="small" x="1350" y="202" text-anchor="middle">0.91</text>
+      <rect class="score" x="1308" y="227" width="83" height="34"/>
+      <text class="small" x="1350" y="249" text-anchor="middle">0.72</text>
+      <rect class="score" x="1308" y="274" width="83" height="34"/>
+      <text class="small" x="1350" y="296" text-anchor="middle">0.33</text>
+      <text class="body" x="1350" y="330" text-anchor="middle">...</text>
+      <rect class="score" x="1308" y="345" width="83" height="34"/>
+      <text class="small" x="1350" y="367" text-anchor="middle">0.67</text>
+    </g>
+
+    <line x1="1414" y1="142" x2="1414" y2="397" stroke="#073c8c" stroke-width="1.4"/>
+    <text class="body" x="1530" y="172" text-anchor="middle">Cosine similarity</text>
+    <text class="math" x="1436" y="269">s<tspan baseline-shift="sub" font-size="15">i</tspan> =</text>
+    <line x1="1486" y1="260" x2="1641" y2="260" stroke="#052f7b" stroke-width="1.7"/>
+    <text x="1560" y="244" text-anchor="middle" style="font:italic 19px Georgia,serif;fill:#052f7b">f<tspan baseline-shift="sub" font-size="13">i</tspan><tspan baseline-shift="super" font-size="13">LiDAR</tspan> · f<tspan baseline-shift="sub" font-size="13">i</tspan><tspan baseline-shift="super" font-size="13">Image</tspan></text>
+    <text x="1560" y="290" text-anchor="middle" style="font:italic 19px Georgia,serif;fill:#052f7b">|| f<tspan baseline-shift="sub" font-size="13">i</tspan><tspan baseline-shift="super" font-size="13">LiDAR</tspan> || || f<tspan baseline-shift="sub" font-size="13">i</tspan><tspan baseline-shift="super" font-size="13">Image</tspan> ||</text>
+    <text class="math" x="1535" y="377" text-anchor="middle">s<tspan baseline-shift="sub" font-size="15">i</tspan> ∈ [−1, 1]</text>
+  </g>
+
+  <g id="step-6-check-convergence">
+    <rect class="panel" x="34" y="472" width="470" height="405" rx="14"/>
+    <circle cx="137" cy="506" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="137" y="518" text-anchor="middle">6</text>
+    <text x="178" y="517" style="font:700 32px Georgia,serif;fill:#07347d">Check convergence</text>
+
+    <text class="heading" x="55" y="572">Stopping criteria</text>
+    <text class="heading" x="407" y="570" text-anchor="middle">Converged?</text>
+    <text class="body" x="51" y="635">• |L(T<tspan baseline-shift="sub" font-size="14">k+1</tspan>) − L(T<tspan baseline-shift="sub" font-size="14">k</tspan>)| &lt; ε<tspan baseline-shift="sub" font-size="14">L</tspan></text>
+    <text class="body" x="51" y="710">• ||T<tspan baseline-shift="sub" font-size="14">k+1</tspan> − T<tspan baseline-shift="sub" font-size="14">k</tspan>|| &lt; ε<tspan baseline-shift="sub" font-size="14">T</tspan></text>
+    <text class="body" x="51" y="780">• k ≥ k<tspan baseline-shift="sub" font-size="14">max</tspan></text>
+
+    <path class="thinArrow" d="M314 611 L314 667"/>
+    <path class="thinArrow" d="M409 585 L409 658"/>
+    <path class="thinArrow" d="M314 773 L314 745"/>
+    <path d="M314 611 L409 611" stroke="#0b438f" stroke-width="3" fill="none"/>
+    <ellipse cx="314" cy="714" rx="29" ry="25" fill="#fff" stroke="#073c8c" stroke-width="1.8"/>
+    <text class="body" x="314" y="722" text-anchor="middle">Yes</text>
+    <ellipse cx="314" cy="822" rx="29" ry="25" fill="#fff" stroke="#073c8c" stroke-width="1.8"/>
+    <text class="body" x="314" y="830" text-anchor="middle">No</text>
+    <rect x="356" y="676" width="135" height="58" rx="10" fill="#fff" stroke="#073c8c" stroke-width="1.8"/>
+    <text class="body" x="424" y="711" text-anchor="middle">Output T<tspan baseline-shift="sub" font-size="14">k+1</tspan></text>
+    <text class="small" x="423" y="763" text-anchor="middle">(Final alignment)</text>
+  </g>
+
+  <g id="step-5-update-t">
+    <rect class="panel" x="537" y="472" width="492" height="405" rx="14"/>
+    <circle cx="675" cy="506" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="675" y="518" text-anchor="middle">5</text>
+    <text class="title" x="719" y="517">Update</text>
+    <text x="872" y="517" style="font:italic 36px Georgia,serif;fill:#07347d">T</text>
+
+    <rect x="558" y="549" width="406" height="250" rx="8" fill="#fff" stroke="#073c8c" stroke-width="1.8"/>
+    <text class="heading" x="761" y="580" text-anchor="middle">Optimizer</text>
+    <text class="body" x="761" y="612" text-anchor="middle">(Levenberg-Marquardt)</text>
+    <rect x="622" y="639" width="269" height="66" rx="8" fill="#fff" stroke="#073c8c" stroke-width="1.8"/>
+    <text class="math" x="757" y="681" text-anchor="middle">T<tspan baseline-shift="sub" font-size="15">k+1</tspan> = T<tspan baseline-shift="sub" font-size="15">k</tspan> ⊕ ΔT</text>
+    <text class="math" x="594" y="758">ΔT = arg min</text>
+    <text class="math" x="694" y="786" text-anchor="middle">ΔT</text>
+    <text class="math" x="779" y="758">L(T<tspan baseline-shift="sub" font-size="15">k</tspan> ⊕ ΔT)</text>
+    <text class="body" x="761" y="846" text-anchor="middle">T<tspan baseline-shift="sub" font-size="14">k+1</tspan> is a better alignment than T<tspan baseline-shift="sub" font-size="14">k</tspan></text>
+  </g>
+
+  <g id="step-4-construct-loss">
+    <rect class="panel" x="1030" y="472" width="625" height="405" rx="14"/>
+    <circle cx="1196" cy="506" r="22" fill="url(#badge)"/>
+    <text class="badgeText" x="1196" y="518" text-anchor="middle">4</text>
+    <text class="title" x="1239" y="517">Construct loss</text>
+
+    <text x="1112" y="564" text-anchor="middle" style="font:700 20px Georgia,serif;fill:#052f7b">Similarity s<tspan baseline-shift="sub" font-size="13">i</tspan></text>
+    <text x="1248" y="564" text-anchor="middle" style="font:700 20px Georgia,serif;fill:#052f7b">Weight w<tspan baseline-shift="sub" font-size="13">i</tspan></text>
+    <text x="1370" y="564" text-anchor="middle" style="font:700 20px Georgia,serif;fill:#052f7b">Loss w<tspan baseline-shift="sub" font-size="13">i</tspan>s<tspan baseline-shift="sub" font-size="13">i</tspan></text>
+    <text x="1534" y="564" text-anchor="middle" style="font:700 20px Georgia,serif;fill:#052f7b">Weighted loss</text>
+
+    <g id="loss-table">
+      <rect class="score" x="1070" y="584" width="84" height="34"/><text class="small" x="1112" y="606" text-anchor="middle">0.91</text>
+      <rect class="score" x="1206" y="584" width="84" height="34"/><text class="small" x="1248" y="606" text-anchor="middle">0.95</text>
+      <rect class="score" x="1328" y="584" width="84" height="34"/><text class="small" x="1370" y="606" text-anchor="middle">0.865</text>
+
+      <rect class="score" x="1070" y="633" width="84" height="34"/><text class="small" x="1112" y="655" text-anchor="middle">0.72</text>
+      <rect class="score" x="1206" y="633" width="84" height="34"/><text class="small" x="1248" y="655" text-anchor="middle">0.80</text>
+      <rect class="score" x="1328" y="633" width="84" height="34"/><text class="small" x="1370" y="655" text-anchor="middle">0.576</text>
+
+      <rect class="score" x="1070" y="683" width="84" height="34"/><text class="small" x="1112" y="705" text-anchor="middle">0.33</text>
+      <rect class="score" x="1206" y="683" width="84" height="34"/><text class="small" x="1248" y="705" text-anchor="middle">0.20</text>
+      <rect class="score" x="1328" y="683" width="84" height="34"/><text class="small" x="1370" y="705" text-anchor="middle">0.066</text>
+
+      <text class="body" x="1112" y="746" text-anchor="middle">...</text>
+      <text class="body" x="1248" y="746" text-anchor="middle">...</text>
+      <text class="body" x="1370" y="746" text-anchor="middle">...</text>
+
+      <rect class="score" x="1070" y="760" width="84" height="34"/><text class="small" x="1112" y="782" text-anchor="middle">0.67</text>
+      <rect class="score" x="1206" y="760" width="84" height="34"/><text class="small" x="1248" y="782" text-anchor="middle">0.70</text>
+      <rect class="score" x="1328" y="760" width="84" height="34"/><text class="small" x="1370" y="782" text-anchor="middle">0.469</text>
+    </g>
+
+    <text class="math" x="1462" y="655">L(T<tspan baseline-shift="sub" font-size="15">k</tspan>) = −</text>
+    <text class="math" x="1568" y="632" text-anchor="middle">N</text>
+    <text class="math" x="1568" y="660" text-anchor="middle" font-size="54">∑</text>
+    <text class="math" x="1568" y="691" text-anchor="middle">i=1</text>
+    <text class="math" x="1608" y="655" text-anchor="middle">w<tspan baseline-shift="sub" font-size="15">i</tspan>s<tspan baseline-shift="sub" font-size="15">i</tspan></text>
+    <text class="math" x="1536" y="744" text-anchor="middle">w<tspan baseline-shift="sub" font-size="15">i</tspan> = g(s<tspan baseline-shift="sub" font-size="15">i</tspan>)</text>
+    <text x="1536" y="777" text-anchor="middle" style="font:600 20px Georgia,serif;fill:#052f7b">(robust weighting)</text>
+    <text x="1342" y="848" text-anchor="middle" style="font:600 20px Georgia,serif;fill:#052f7b">Higher similarity and weight lead to lower loss</text>
+  </g>
+</svg>

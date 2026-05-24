@@ -96,6 +96,17 @@ section:not(.lead) li {
 .emphasis {
   color: var(--color-highlight);
 }
+
+.tight-stack {
+  display: grid;
+  gap: 0.15rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.tight-stack img {
+  display: block;
+}
 </style>
 
 <!-- _class: lead -->
@@ -233,103 +244,51 @@ $$
 ---
 
 
-# SAGA-3D Framework
+# SAGA-3D Method Overview
 
-<div class="columns-55">
+<div class="columns-37">
 
 <div>
 
-![center w:720](presentation/assets/overview.png)
+## Two Semantic Branches
+
+- Build comparable semantic features for image and LiDAR.
+- Use stable projections to teach LiDAR points visual semantics.
+- Refine camera-LiDAR alignment before 3D detection.
+
 
 </div>
 
-<div class="center-text">
+<div>
 
-1. Extract frozen VFM features.2. Project LiDAR with current extrinsics.
-2. Score semantic consistency.4. Refine alignment before detection.
-
-<!-- <span class="emphasis"><strong>Design emphasis: align first, then detect.</strong></span> -->
+![center w:820](presentation/assets/overview.png)
 
 </div>
 
 </div>
 
-> Fig: VFM features, semantic-guided alignment, and 3D detection.
+> RGB and LiDAR are encoded into semantic features first, then aligned before 3D detection.
 
 ---
 
-# VFM Semantics
-
-<div class="columns">
+# LiDAR Semantic MLP
 
 <div>
 
-## Limits of Low-Level Cues
 
-- Sensitive to reflection and lighting
-- Weak for distant small targets
-- Fragile under occlusion
-- Limited with sparse LiDAR
+![center w:1000](presentation/assets/mlp.png)
 
 </div>
 
-<div>
-
-## Role of VFM Semantics
-
-- High-level semantic embeddings
-- More invariant visual cues
-- Stronger alignment target
-- Frozen reusable prior
-
-</div>
-
-</div>
-<div>
-
-![center w:720](presentation/assets/VFM.png)
-
-</div>
-<span class="emphasis"><strong>VFM features guide geometry, not just image fusion.</strong></span>
 
 ---
 
-# Confidence-Aware Alignment
+# Confidence-Aware Optimization
 
-<div class="columns">
 
-<div>
+![center w:1000](presentation/assets/loop.png)
 
-## Semantic Similarity
 
-Compare projected LiDAR features with image features:
-
-$$
-S_i=\frac{f_i^{LiDAR}\cdot f_i^{Image}}
-{\|f_i^{LiDAR}\|\|f_i^{Image}\|}
-$$
-
-Cosine similarity measures cross-modal agreement.
-
-</div>
-
-<div>
-
-## Weighted Objective
-
-Use reliability weight $w_i$:
-
-$$
-L(T)=-\sum_{i=1}^{N}w_iS_i
-$$
-
-Reliable matches dominate; noisy matches are suppressed.
-
-</div>
-
-</div>
-
-<span class="emphasis"><strong>Why it matters: weights protect alignment from noisy observations.</strong></span>
 
 ---
 
@@ -471,40 +430,21 @@ baseline top; SAGA-3D bottom.
 
 ---
 
-# Conclusion and Future Work
+# Future Work
 
-<div class="columns-3">
-
-<div>
-
-## Problem
-
-Fusion is degraded by motion, environment, and calibration uncertainty.
-
-</div>
+<div class="tight-stack">
 
 <div>
 
-## Method
-
-Alignment is optimized by weighted semantic consistency.
+<img src="presentation/assets/future1.png" height="200">
 
 </div>
 
 <div>
 
-## Result
+<img src="presentation/assets/future2.png" height="310">
 
-SAGA-3D improves BEV and 3D mAP on SeePerSea.
 
 </div>
 
 </div>
-
-
-
-## Future work
-
- extreme sea states and lightweight real-time alignment.
-
-> Thank you
